@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <title>
+
+        {{title}}
+
+    </title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" href="./assets/style.css" </head>
+    <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<body>
+    <section class="container">
+        {{> navbar}}
+        <h1 align="center">TODO APP</h1>
+
+        <!-- form to create task -->
+        <form action="/create-todo" method="POST">
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr class="table-active bg-dark">
+                        
+                        <th>Add Task</th>
+                        <th>category</th>
+                        <th>date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    {{!-- <tr>
+                         <td> <input type="text" name="name" placeholder="Place your name"
+                                required></input></th>
+                        <td> <select name="category" required> --}}
+                        <td> <input type="text" name="description" placeholder="What do you need to do?"
+                                required></input></th>
+                        <td> <select name="category" required>
+
+                                <option>PERSONAL</option>
+                                <option>WORK</option>
+                                <option>SCHOOL</option>
+                                <option>CLEANING</option>
+                                <option>OTHER</option>
+
+                            </select></th>
+                        <td> <input type="date" name="date" required></th>
+                        {{!-- <td> <input type="text" name="name" placeholder="Place your name"
+                                required></input></th> --}}
+                        <td><input type="submit" class="btn btn-success" id="add" value="ADD TASK"></th>
+                        
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </form>
+    </section>
+    <div class="container" align="center">
+        <h1 align="center">TASKS LIST</h1>
+
+        <form action="/delete-todo" method="GET">
+            <table class="table table-hover ">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Select</th>
+                        <th>Task</th>
+                        <th>Category</th>
+                        <th>due date</th>
+                        <form action="/todo" method="get">
+                          <th></th><input class="form-control me-2 auto" type="search" placeholder="Search" aria-label="Search"></th>
+                        </form>
+                       
+       
+        {{!-- <button class="btn btn-outline-success auto" type="submit">Search</button> --}}
+      </form>
+                    </tr>
+                </thead>
+                {{#each task }}
+                    
+               
+
+                    <tr>
+                        {{!-- {{this.description}} --}}
+                        
+                        <td> <input type="checkbox" name="{{this._id}}"></td>
+                        <td>
+                            <p id="task-description">
+                                {{this.description}}
+                        </td>
+                        <td>
+                            <p id="task-category"></p>:{{this.category}}
+                        </td>
+                        <td>
+                            <p id="due-date">: {{this.date}}
+                            </p>
+                        </td>
+                    </tr>
+
+
+                   {{/each}}
+
+
+
+
+
+            </table>
+            {{#if task}}
+            <div align="center"><input type="submit" class="btn btn-danger" value="DELETE TASK">
+            </div>
+            {{/if}}
+        </form>
+
+
+    </div>
+</body>
+
+</html>

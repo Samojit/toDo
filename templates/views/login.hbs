@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> header}}
+</head>
+<body>
+    {{> navbar}}
+    {{#if message}}  <div class="alert alert-danger" role="alert">
+     
+ Invalid Details 
+</div>
+<script>
+  $(".alert alert-danger").fadeTo(2000, 500).slideUp(500, function(){
+    $(".alert alert-danger").alert('close');
+});
+</script>
+ {{/if}}
+    <div class="container">
+      <form class="row g-3" action="/login" method="POST">
+  
+ 
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Email</label>
+    <input type="text" name="email" class="form-control" >
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Password</label>
+    <input type="password" name="password" class="form-control" id="inputPassword4">
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </div>
+    <a href="/register">Create Account</a>
+    </form>
+    </div>
+    
+</body>
+</html>
